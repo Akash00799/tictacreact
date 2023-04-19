@@ -102,6 +102,7 @@ function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
 
   return (
     <div className="App-header">
+      <h1>Play Game</h1>
       <div className="Board">
         <div>
           <Block mark={marks[0]} position={0} changeMark={changeMark}></Block>
@@ -120,6 +121,7 @@ function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
         </div>
         {gameOver && <div className="Winner">{winner} wins!</div>}
       </div>
+      <h3>Tic-Tac</h3>
     </div>
   );
 }
