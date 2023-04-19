@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import { connect, Provider } from "react-redux";
 import { createStore } from "redux";
 
+// REDUX: Initial State
 const initial_state = {
   marks: [0, 0, 0, 0, 0, 0, 0, 0, 0],
   player: 1,
   gameOver: false,
 };
+// REDUX: Reducer
 
 const reducer = (state = initial_state, action) => {
   switch (action.type) {
@@ -21,9 +23,11 @@ const reducer = (state = initial_state, action) => {
       return state;
   }
 };
+// REDUX: Store
 
 const store = createStore(reducer);
 
+// App Component with Provider on BoardContainer
 function App() {
   return (
     <div className="App">
@@ -34,6 +38,7 @@ function App() {
   );
 }
 
+// BoardContainer Component using Connect and Map functions
 const mapStateToProps = (state) => {
   return {
     marks: state.marks,
@@ -54,12 +59,12 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-
 const BoardContainer = connect(mapStateToProps, mapDispatchToProps)(Board);
 
+// Board Component
 function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
   useEffect(() => {
-    const combination = [
+    const combinations = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -70,17 +75,17 @@ function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
       [2, 4, 6],
     ];
 
-    for (let c of combination) {
+    for (let c of combinations) {
       if (marks[c[0]] === 1 && marks[c[1]] === 1 && marks[c[2]] === 1) {
         console.log("player 1 wins");
         setGameOver(true);
       }
       if (marks[c[0]] === 2 && marks[c[1]] === 2 && marks[c[2]] === 2) {
-        console.log("palyer 2 wins");
+        console.log("player 2 wins");
         setGameOver(true);
       }
     }
-  }, [setGameOver]);
+  }, [marks, setGameOver]);
 
   const changeMark = (i) => {
     const m = [...marks];
@@ -114,6 +119,7 @@ function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
   );
 }
 
+// Block Component
 function Block({ mark, changeMark, position }) {
   return (
     <div
