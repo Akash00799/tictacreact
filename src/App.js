@@ -98,22 +98,27 @@ function Board({ marks, player, gameOver, setGameOver, setMarks, setPlayer }) {
     }
   };
 
+  const winner = gameOver && player === 1 ? "Player 2" : "Player 1";
+
   return (
-    <div className="Board">
-      <div>
-        <Block mark={marks[0]} position={0} changeMark={changeMark}></Block>
-        <Block mark={marks[1]} position={1} changeMark={changeMark}></Block>
-        <Block mark={marks[2]} position={2} changeMark={changeMark}></Block>
-      </div>
-      <div>
-        <Block mark={marks[3]} position={3} changeMark={changeMark}></Block>
-        <Block mark={marks[4]} position={4} changeMark={changeMark}></Block>
-        <Block mark={marks[5]} position={5} changeMark={changeMark}></Block>
-      </div>
-      <div>
-        <Block mark={marks[6]} position={6} changeMark={changeMark}></Block>
-        <Block mark={marks[7]} position={7} changeMark={changeMark}></Block>
-        <Block mark={marks[8]} position={8} changeMark={changeMark}></Block>
+    <div className="App-header">
+      <div className="Board">
+        <div>
+          <Block mark={marks[0]} position={0} changeMark={changeMark}></Block>
+          <Block mark={marks[1]} position={1} changeMark={changeMark}></Block>
+          <Block mark={marks[2]} position={2} changeMark={changeMark}></Block>
+        </div>
+        <div>
+          <Block mark={marks[3]} position={3} changeMark={changeMark}></Block>
+          <Block mark={marks[4]} position={4} changeMark={changeMark}></Block>
+          <Block mark={marks[5]} position={5} changeMark={changeMark}></Block>
+        </div>
+        <div>
+          <Block mark={marks[6]} position={6} changeMark={changeMark}></Block>
+          <Block mark={marks[7]} position={7} changeMark={changeMark}></Block>
+          <Block mark={marks[8]} position={8} changeMark={changeMark}></Block>
+        </div>
+        {gameOver && <div className="Winner">{winner} wins!</div>}
       </div>
     </div>
   );
